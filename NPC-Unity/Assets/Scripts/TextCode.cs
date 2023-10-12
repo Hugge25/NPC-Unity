@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using Unity.VisualScripting;
 
 
 public class TextCode : MonoBehaviour
 {
-    public GameObject Text;
+    public TextMeshProUGUI tmp;
+    private float rad = 3;
     void Start()
     {
-
+        tmp = FindObjectOfType<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -20,15 +23,21 @@ public class TextCode : MonoBehaviour
         Vector3 Offset_2 = GameObject.FindWithTag("Player").transform.position - GameObject.FindWithTag("npc2").transform.position;
         float Distance_2 = Offset_2.magnitude;
 
-        if(Distance_1 <= 2f && Input.GetKeyDown(KeyCode.E))
+        if(Distance_1 <= rad && Input.GetKeyDown(KeyCode.E))
         {
-            
+            tmp.text = "Hey";
+        }
+        else if(Distance_2 <= rad && Input.GetKeyDown(KeyCode.E))
+        {
+            tmp.text = "Hello";
+        }
+        else if(Distance_1 >= rad && Distance_2 >= rad)
+        {
+            tmp.text = "";
         }
 
-        if(Distance_2 <= 2f && Input.GetKeyDown(KeyCode.E))
-        {
-            
-        }
+
+        
        
     }
 }

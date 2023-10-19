@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 public class TextCode : MonoBehaviour
 {
     public TextMeshProUGUI tmp;
-    private float rad = 3;
+    public string Line;
     void Start()
     {
         tmp = FindObjectOfType<TextMeshProUGUI>();
@@ -17,27 +17,17 @@ public class TextCode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 Offset_1 = GameObject.FindWithTag("Player").transform.position - GameObject.FindWithTag("npc1").transform.position;
-        float Distance_1 = Offset_1.magnitude;
 
-        Vector3 Offset_2 = GameObject.FindWithTag("Player").transform.position - GameObject.FindWithTag("npc2").transform.position;
-        float Distance_2 = Offset_2.magnitude;
+    }
 
-        if(Distance_1 <= rad && Input.GetKeyDown(KeyCode.E))
-        {
-            tmp.text = "Hey";
-        }
-        else if(Distance_2 <= rad && Input.GetKeyDown(KeyCode.E))
+    private void OnTriggerStay2D(Collider2D other) {
+
+        if(other.transform.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
         {
             tmp.text = "Hello";
         }
-        else if(Distance_1 >= rad && Distance_2 >= rad)
-        {
-            tmp.text = "";
-        }
-
-
-        
-       
+    }
+    private void OnTriggerExit2D(Collider2D other) {
+        tmp.text = "";
     }
 }

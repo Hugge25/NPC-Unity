@@ -6,6 +6,7 @@ TagManager:
   tags:
   - npc1
   - npc2
+  - Npc
   layers:
   - Default
   - TransparentFX
